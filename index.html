@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-blog-9-23" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/23/blog-9-23/" class="article-date">
+  <time datetime="2020-09-23T05:03:58.000Z" itemprop="datePublished">2020-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/23/blog-9-23/">Java编程环境配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java基本所需的编程环境包括Git、JDK、NODE、Maven、MySQL、Redis、Tomcat，本次安装配置的系统为Manjaro。</p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>Git可直接通过包管理器安装，Manjaro下通常可直接安装最新版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S git</span><br></pre></td></tr></table></figure>
+<p>安装后通过如下命令检查安装是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<h2 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h2><p>Majaro下也可直接通过包管理器安装JDK，但安装的通常是OpenJDK，推荐从Oracle官网上下载OracleJDK，我这里下载的是jdk-8u261-linux-x64.tar.gz  </p>
+<ol>
+<li>进入/usr/local/，创建java文件夹并进入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;</span><br><span class="line">sudo mkdir java</span><br><span class="line">cd java</span><br></pre></td></tr></table></figure></li>
+<li>将下载好的压缩包解压到当前文件夹<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf ~&#x2F;Download&#x2F;jdk-8u261-linux-x64.tar.gz -C .&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>编辑/etc/profile文件，配置JDK环境变量，在文件尾部加入如下内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk</span><br><span class="line">CLASSPATH&#x3D;$JAVA_HOME&#x2F;lib&#x2F;</span><br><span class="line">PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin</span><br><span class="line">export PATH JAVA_HOME CLASSPATH</span><br></pre></td></tr></table></figure>
+接着执行如下命令让添加的环境变量生效<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure></li>
+<li>通过如下命令检查安装是否成功<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h2 id="NODE环境安装"><a href="#NODE环境安装" class="headerlink" title="NODE环境安装"></a>NODE环境安装</h2>Manjaro下通过包管理器可直接安装较新版本的Node<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S nodejs</span><br></pre></td></tr></table></figure>
+安装后通过如下命令验证安装结果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm version</span><br><span class="line">npx -v</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="MySQL数据库的安装"><a href="#MySQL数据库的安装" class="headerlink" title="MySQL数据库的安装"></a>MySQL数据库的安装</h2><p>linux的官方镜像中通常只有MariaDB，要安装MySQL需要从官网下载，我这里下载的是mysql-8.0.21-linux-glibc2.12-x86_64.tar.xz</p>
+<ol>
+<li><p>首先进入/usr/local/,将MySQL安装包解压到当前文件夹并重命名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;</span><br><span class="line">tar -Jxvf ~&#x2F;Download&#x2F;mysql-8.0.21-linux-glibc2.12-x86_64.tar.xz -C .&#x2F;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建MYSQL用户以及用户组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd mysql</span><br><span class="line">sudo useradd -g mysql mysql</span><br></pre></td></tr></table></figure>
+<p>同时新建/usr/local/mysql/data以备后续使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data</span><br></pre></td></tr></table></figure>
+<p>接着修改mysql目录的归属用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R mysql:mysql .&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li><p>在/etc下新建my.cnf文件,并写入如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">socket &#x3D; &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;mysql.sock</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set &#x3D; utf8</span><br><span class="line">socket &#x3D; &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;mysql.sock</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">port &#x3D; 3306</span><br><span class="line">socket &#x3D; &#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line">basedir &#x3D; &#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line">datadir &#x3D; &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data</span><br><span class="line">max_connections &#x3D; 200</span><br><span class="line">default-storage-engine &#x3D; INNODB</span><br><span class="line">lower_case_table_names &#x3D; 1</span><br><span class="line">max_allowed_packet &#x3D; 16M</span><br></pre></td></tr></table></figure>
+<p>接着创建/var/lib/mysql，并修改权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir &#x2F;var&#x2F;lib&#x2F;mysql</span><br><span class="line">chmod 777 &#x2F;var&#x2F;lib&#x2F;mysql</span><br></pre></td></tr></table></figure></li>
+<li><p>进入mysql文件夹并开始安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line">.&#x2F;bin&#x2F;mysqld --initialize --user&#x3D;mysql --basedir&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql --datadir&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data</span><br></pre></td></tr></table></figure>
+<p>通过mysql/support-files/下的mysql.server文件启动或关闭mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;support-files&#x2F;mysql.server start</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;support-files&#x2F;mysql.sercer stop</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="Redis的安装"><a href="#Redis的安装" class="headerlink" title="Redis的安装"></a>Redis的安装</h2><p>可直接通过包管理器安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S redis</span><br></pre></td></tr></table></figure>
+<h2 id="Tomcat的安装"><a href="#Tomcat的安装" class="headerlink" title="Tomcat的安装"></a>Tomcat的安装</h2><p>通过官网下载Tomcat安装包，我这里下载的是apache-tomcat-9.0.38.tar.gz</p>
+<ol>
+<li>进入/usr/local，在该文件夹下创建tomcat文件夹并进入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local</span><br><span class="line">sudo mkdir tomcat</span><br><span class="line">cd tomcat&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>将下载的Tomcat安装包解压到当前文件夹下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf ~&#x2F;Download&#x2F;apache-tomcat-9.0.38.tar.gz -C .&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>进入apache-tomcat-9.0.38文件夹下并启动tomcat<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd apache-tomcat-9.0.38</span><br><span class="line">sudo .&#x2F;bin&#x2F;startup.sh</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/23/blog-9-23/" data-id="ckfw3kx1d0003ba5nanw9arn2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Algorithm-learning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/07/Algorithm-learning/" class="article-date">
+  <time datetime="2020-04-07T02:26:45.000Z" itemprop="datePublished">2020-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/07/Algorithm-learning/">算法学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="算法的定义"><a href="#算法的定义" class="headerlink" title="算法的定义"></a>算法的定义</h2><p>算法是解决特定问题求解步骤的描述，在计算机中表现为指令的有限序列，并且每条指令表示一个或多个操作</p>
+<hr>
+<h2 id="算法的特性"><a href="#算法的特性" class="headerlink" title="算法的特性"></a>算法的特性</h2><p>算法的特性包括输入、输出、有穷性、确定性和可行性</p>
+<h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><p>算法具有零个或多个输入，至少有一个或多个输出</p>
+<h3 id="有穷性"><a href="#有穷性" class="headerlink" title="有穷性"></a>有穷性</h3><p>算法在执行有限的步骤之后，自动结束而不会出现无限循环，并且每个步骤在可接受的时间内完成</p>
+<h3 id="确定性"><a href="#确定性" class="headerlink" title="确定性"></a>确定性</h3><p>算法的每一个步骤都具有确定的含义，不会出现二义性</p>
+<h3 id="可行性"><a href="#可行性" class="headerlink" title="可行性"></a>可行性</h3><p>算法的每一个步骤都必须是可行的，也就是说，每一步都能够通过执行有限次数完成</p>
+<hr>
+<h2 id="算法设计的要求"><a href="#算法设计的要求" class="headerlink" title="算法设计的要求"></a>算法设计的要求</h2><h3 id="正确性"><a href="#正确性" class="headerlink" title="正确性"></a>正确性</h3><p>算法的正确性是指算法至少应该具有输入、输出和加工处理无歧义性、能正确反应问题的需求、能够得到问题的正确答案</p>
+<h3 id="可读性"><a href="#可读性" class="headerlink" title="可读性"></a>可读性</h3><p>算法设计的另一目的是为了便于阅读、理解和交流</p>
+<h3 id="健壮性"><a href="#健壮性" class="headerlink" title="健壮性"></a>健壮性</h3><p>当输入数据不合法时，算法也能做出相关处理，而不是产生异常或莫名其妙的结果</p>
+<h3 id="时间效率高和存储量低"><a href="#时间效率高和存储量低" class="headerlink" title="时间效率高和存储量低"></a>时间效率高和存储量低</h3><p>设计算法应尽量满足时间效率高和存储量低的需求</p>
+<hr>
+<h2 id="算法的时间复杂度"><a href="#算法的时间复杂度" class="headerlink" title="算法的时间复杂度"></a>算法的时间复杂度</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在进行算法分析时，语句总的执行次数T(n)是关于问题规模n的函数，进而分析T(n)随n的变化情况并确定T(n)的数量级。算法的时间复杂度，也就是算法的时间量度，记作T(n)=O(f(n))。它表示随问题规模n的增大，算法执行时间的增长率和f(n)的增长率相同，称作算法的渐进时间复杂度，简称为时间复杂度。其中f(n)是问题规模n的某个函数，</p>
+<h3 id="大O阶的推导方法"><a href="#大O阶的推导方法" class="headerlink" title="大O阶的推导方法"></a>大O阶的推导方法</h3><p>具体步骤如下：</p>
+<ol>
+<li>用常数1取代运行时间中的所有加法常数</li>
+<li>在修改后的运行次数函数中，只保留最高阶项。</li>
+<li>如果最高阶项存在且不是1,则去除与这个项相乘的常数。<br>最后所的的结果即大O阶<h3 id="常见的时间复杂度"><a href="#常见的时间复杂度" class="headerlink" title="常见的时间复杂度"></a>常见的时间复杂度</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>执行次数函数</td>
+<td>阶</td>
+<td>非正式术语</td>
+</tr>
+<tr>
+<td>12</td>
+<td>O(1)</td>
+<td>常数阶</td>
+</tr>
+<tr>
+<td>2n+3</td>
+<td>O(n)</td>
+<td>线性阶</td>
+</tr>
+<tr>
+<td>3n<sup>2</sup> +2n+1</td>
+<td>O(n<sup>2</sup> )</td>
+<td>平方阶</td>
+</tr>
+<tr>
+<td>5log<sub>2</sub> n+20</td>
+<td>O(logn)</td>
+<td>对数阶</td>
+</tr>
+<tr>
+<td>2n+3nlog<sub>2</sub> n+19</td>
+<td>O(nlogn)</td>
+<td>nlogn阶</td>
+</tr>
+<tr>
+<td>6n<sup>3</sup> +2n<sup>2</sup>+3n+4</td>
+<td>O(n<sup>3</sup> )</td>
+<td>立方阶</td>
+</tr>
+<tr>
+<td>2<sup>n</sup></td>
+<td>O(2<sup>n</sup> )</td>
+<td>指数阶</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p>常用的时间复杂度所耗费的时间从小到大依次是：<br>O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n<sup>2</sup> ) &lt; O(n<sup>3</sup> ) &lt; O(2<sup>n</sup> ) &lt; O(n!) &lt; O(n<sup>n</sup> ) </p>
+<hr>
+<p>参考资料：  《大话数据结构》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/04/07/Algorithm-learning/" data-id="ckfw3kx160000ba5n22915okw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-blog-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/19/blog-1/" class="article-date">
+  <time datetime="2020-03-19T06:56:08.000Z" itemprop="datePublished">2020-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/19/blog-1/">双系统时间不同步问题解决</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>安装arch和Windows双系统后，Windows系统的时间要比标准时间慢上8个小时，即使同步时间，在使用过arch系统后，Windows系统时间又慢上8个小时，而在未联网的情况下，arch上的时间会比标准时间快上8个小时。</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>之所以两个系统的时间不同步，是因为两个系统确定系统时间的标准不一样。</p>
+<ul>
+<li>在archlinux下使用的UTC标准，在这种标准下将硬件时间认为是UTC标准时间，将UTC标准时间与时区相加或相减得到系统时间</li>
+<li>在Windows下使用的是localtime标准，这种标准会直接将硬件时间作为系统时间。<br>Linux系统在联网时会根据网络同步时间，Windows往往只根据硬件时间同步系统时间。Liunx系统每次同步时间后，会将UTC标准时间写入硬件时间，这个时间是根据当前时间与时区相加减得到的，要比当前标准时间慢上8个小时，所以在切换Windows后，系统时间就是硬件时间，会慢上8小时，在Windows上同步时间后，硬件时间与当前时间相同，但Linux系统认为这个时间是UTC标准时间，会将它加上8小时，所以在未联网时Liunx的系统时间会快上8小时。</li>
+</ul>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>既然问题在于两个系统确定系统时间的标准不一样，那么就让两个系统用同样的标准<br>在arch系统终端下执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo timedatectl set-local-rtc true</span><br></pre></td></tr></table></figure>
+<p>执行次命令后，两个系统使用的都是localtime标准，便不会再出现时间不同步现象。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/19/blog-1/" data-id="ckfw3kx1c0002ba5n7kvl6py6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Git-Guider" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/06/Git-Guider/" class="article-date">
+  <time datetime="2020-01-06T01:07:25.000Z" itemprop="datePublished">2020-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/06/Git-Guider/">Git常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id=""><a href="#" class="headerlink" title=""></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>将当前文件夹新建为一个git仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add</span><br></pre></td></tr></table></figure>
+<p>将指定文件添加修改，（git add .）可添加当前仓库所有修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>列出分支，后加-d可删除指定分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout</span><br></pre></td></tr></table></figure>
+<p>可用于切换分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge</span><br></pre></td></tr></table></figure>
+<p>将多个分支合并</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone</span><br></pre></td></tr></table></figure>
+<p>将远程git仓库克隆到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+<p>显示还未提交的修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>显示当前仓库文件变化情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git switch</span><br></pre></td></tr></table></figure>
+<p>切换分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset</span><br></pre></td></tr></table></figure>
+<p>撤销已提交的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config</span><br></pre></td></tr></table></figure>
+<p>用于设置，通过(git config –global user.name/user.email “”)可向Git提交自己的身份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin</span><br></pre></td></tr></table></figure>
+<p>后接地址可将当前仓库添加到远程</p>
+<hr>
+<p>参考资料:<a target="_blank" rel="noopener" href="https://git-scm.com/docs">Git-Referance</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/06/Git-Guider/" data-id="ckfw3kx1b0001ba5nayj508em" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/23/blog-9-23/">Java编程环境配置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/07/Algorithm-learning/">算法学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/19/blog-1/">双系统时间不同步问题解决</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/06/Git-Guider/">Git常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
