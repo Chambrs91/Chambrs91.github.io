@@ -136,6 +136,190 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/19/leetcode-2/">Leetcode解题记录(2)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/19/leetcode-2/" class="archive-article-date">
+  	<time datetime="2020-10-19T14:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h1><h2 id="题目名称"><a href="#题目名称" class="headerlink" title="题目名称"></a>题目名称</h2><p>19.删除链表的到数第n个节点</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个链表，删除链表第n个节点，并且返回链表的头节点。<br>该链表为单链表，链表定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">    ListNode() &#123;&#125;</span><br><span class="line">    ListNode(<span class="keyword">int</span> val) &#123; <span class="keyword">this</span>.val = val; &#125;</span><br><span class="line">    ListNode(<span class="keyword">int</span> val, ListNode next) &#123; <span class="keyword">this</span>.val = val; <span class="keyword">this</span>.next = next; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ol>
+<li>创建一个新的ListNode指向头节点，计算该链表的长度。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ListNode lnode = head;</span><br><span class="line"><span class="keyword">int</span> lth = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (lnode.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">    lnode = lnode.next</span><br><span class="line">    lth++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>根据长度计算删的节点位置,并先处理只有一个节点的情况。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">if</span> (lth == <span class="number">1</span>)   <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">/* 只有头节点无法进入后续的遍历，现在这里处理。 */</span></span><br><span class="line">   <span class="keyword">int</span> val = lth - n;</span><br></pre></td></tr></table></figure></li>
+<li>创建两个节点，分别指向要删的节点以及它的前一个节点。因为头节点没有前一个节点，先单独处理要删除头节点的情况，接着遍历链表。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (val == <span class="number">0</span>)   head = head.next;</span><br><span class="line">    ListNode cur = head;</span><br><span class="line">    ListNode pre = <span class="keyword">new</span> ListNode();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; val; i++) &#123;</span><br><span class="line">        pre = cur;</span><br><span class="line">        cur = cur.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>删除节点，直接以头节点为返回值<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    pre.next = cur.next;</span><br><span class="line"><span class="keyword">return</span> head;</span><br></pre></td></tr></table></figure>
+<h4 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a><strong>优化方案</strong></h4>在方法一的遍历中无法处理要删除头节点的情况,所以在最开始可以创建一个新的节点，让它作为头节点的前一个节点，最后返回时返回它的下一个节点。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ListNode phead = <span class="keyword">new</span> ListNode();</span><br><span class="line">phead.next = head;</span><br></pre></td></tr></table></figure>
+根据所提供的构造方法，可以简化成如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ListNode phead = <span class="keyword">new</span> ListNode(<span class="number">0</span>,head);</span><br></pre></td></tr></table></figure>
+如此一来，就不需要单独考虑言删除头节点的情况，而遍历时先让节点<code>pre</code>指向<code>phead</code>，再遍历后使用<code>pre.next = pre.next.next</code>删除，这样一来，也不用多创建一个节点。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ListNode pre = phead;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; val; i++) &#123;</span><br><span class="line">    pre = pre.next;</span><br><span class="line">&#125;</span><br><span class="line">pre.next = pre.next;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> phead.next;</span><br></pre></td></tr></table></figure>
+<h4 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h4>该方法的时间复杂度为O(L)，L为链表的长度。<h4 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h4>该方法的空间复杂度为O(1)。<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3>方法一在最后一个节点时需要遍历两边链表，在遍历靠后的节点时效率较低。<br>我们可以利用栈先进后出的特点，在遍历链表时，将每个节点加入栈中，这样一来在删除靠后的节点时可以减少遍历次数。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ListNode pnode = <span class="keyword">new</span> ListNode(<span class="number">0</span>,head);</span><br><span class="line">Stack&lt;ListNode&gt; st = <span class="keyword">new</span> Stack&lt;ListNode&gt;();</span><br><span class="line">ListNode cnode = pnode;</span><br><span class="line"><span class="keyword">while</span> (cnode != <span class="keyword">null</span>) &#123;</span><br><span class="line">    st.push(cnode);</span><br><span class="line">    cnode = cnode.next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    st.pop();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ListNode pre = st.peek();</span><br><span class="line">pre.next = pre.next.next;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> pnode.next;</span><br></pre></td></tr></table></figure>
+<h4 id="时间复杂度分析-1"><a href="#时间复杂度分析-1" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h4>该方法的时间复杂度为O(L)，L为链表的长度。<h4 id="空间复杂度分析-1"><a href="#空间复杂度分析-1" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h4>该方法的空间复杂度为O(L)，L为链表的长度，用于存储栈。<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3>方法一在遍历靠前的节点时效率高，方法二在遍历靠后的节点时效率高，但二者的遍历次数都超过了链表的长度，即使只是删除头节点，两个方法都先要遍历整个链表。<br>在之前的方法一中，遍历时使用cur和pre指代当前节点和前一个节点，按照这个思路，我们可以先用for循环让cur遍历n次，之后再让pre和cur一起遍历，这样pre就是cur的前n个节点，这样一来只需遍历一遍链表便可获得要删除的节点，在head节点前加一个节点以方便处理删除头节点的情况，让cur从head开始遍历，pre从首节点开始遍历，遍历结束后pre指向要删除的前一个节点，方便进行删除操作。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ListNode pnode = <span class="keyword">new</span> ListNode(<span class="number">0</span>, head);</span><br><span class="line">ListNode cur = head;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    cur = cur.next;</span><br><span class="line">&#125;</span><br><span class="line">ListNode pre = pnode;</span><br><span class="line"><span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123;</span><br><span class="line">    pre = pre.next;</span><br><span class="line">    cur = cur.next;</span><br><span class="line">&#125;</span><br><span class="line">pre.next = pre.next.next;</span><br><span class="line"><span class="keyword">return</span> pnode.next;</span><br></pre></td></tr></table></figure>
+<h4 id="时间复杂度分析-2"><a href="#时间复杂度分析-2" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h4>该方法的时间复杂度为O(L)，L为链表的长度。<h4 id="空间复杂度分析-2"><a href="#空间复杂度分析-2" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h4>该方法的空间复杂度为O(1)。</li>
+</ol>
+<hr>
+<h1 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h1><h2 id="题目名称-1"><a href="#题目名称-1" class="headerlink" title="题目名称"></a>题目名称</h2><p>844.比较含退格的字符串</p>
+<h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定<code>S</code>和<code>T</code>两个字符串，当他们分别被输入到空白的文本编辑器后，判断二者是否相等，并返回结果。<code>#</code>代表退格字符。</p>
+<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>具体思路便是先将两个字符串分别遍历，根据退格符<code>#</code>删除前一个字符，为方便处理，将该过程新建一个函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">subback</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    StringBuilder stb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    stb.append(str);    </span><br><span class="line">    <span class="comment">/* StringBuilder中的deleteCharAT()可以很方便地删除字符 */</span></span><br><span class="line">    <span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/* pre用于指向要进行判断的字符，因为pre不是每次都递增，所以用while循环 */</span></span><br><span class="line">    <span class="keyword">while</span> (pre &lt; stb.length()) &#123; </span><br><span class="line">    <span class="comment">/* 字符串长度会变化，所以每次重新计算一遍*/</span></span><br><span class="line">        <span class="keyword">char</span> ch = stb.charAt(pre);</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">&#x27;#&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pre == <span class="number">0</span>)   stb.deleteCharAt(<span class="number">0</span>);</span><br><span class="line">            <span class="comment">/* 首字符没有前一个字符，要单独处理 */</span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                stb.deleteCharAt(pre-<span class="number">1</span>);</span><br><span class="line">                stb.deleteCharAt(pre-<span class="number">1</span>);</span><br><span class="line">                <span class="comment">/* 第二遍删除‘#’ */</span></span><br><span class="line">                pre--;</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>    pre++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> stb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过该函数可以轻松获取进行退格处理后的字符串，之后只要进行比较就行了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> subback(S).equals(subback(T));</span><br></pre></td></tr></table></figure>
+<h4 id="时间复杂度分析-3"><a href="#时间复杂度分析-3" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h4><p>该方法的时间复杂度为O(<em>m</em>+<em>n</em>)，<em>m</em>和<em>n</em>分别为两个字符串的长度。</p>
+<h4 id="空间复杂度分析-3"><a href="#空间复杂度分析-3" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h4><p>该方法的空间复杂度为O(<em>m</em>+<em>n</em>)，<em>m</em>和<em>n</em>分别为两个字符串的长度，用于还原修改后的字符串。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/19/leetcode-2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/18/leetcode-1/">leetcode(1)</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/18/leetcode-1/" class="archive-article-date">
+  	<time datetime="2020-10-18T11:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LeetCode解题记录-1"><a href="#LeetCode解题记录-1" class="headerlink" title="LeetCode解题记录(1)"></a>LeetCode解题记录(1)</h1><hr>
+<h2 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h2><h3 id="问题名称"><a href="#问题名称" class="headerlink" title="问题名称"></a>问题名称</h3><p>977.有序数组的平方</p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定一个非递减顺序排序的整数数组A，返回每个数字的平方组成的新数组，要求也按非递减顺序排序。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>根据问题描述，我们需要将输入数组A的每个数字平方后再重新排序。首先我们可以定义一个新的数组B，该数组与数组A等长，将A的每个数字平方后拷贝到B的对应位置，之后再对B进行排序，返回值为B。</p>
+<ol>
+<li>定义新数组B并将数组A的每个数平方后拷贝到B。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> lth = A.length;</span><br><span class="line"><span class="keyword">int</span>[] B = <span class="keyword">new</span> <span class="keyword">int</span>[];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lth; i++) &#123;</span><br><span class="line">    B[i] = A[i]*A[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>对数组B进行排序，这里使用的是插入排序。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 因为排序中要多次交换数值，这里定义一个用于交换数值的函数 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(<span class="keyword">int</span>[] ar, <span class="keyword">int</span> a, in b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = ar[a];</span><br><span class="line">    ar[a] = ar[b];</span><br><span class="line">    ar[b] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 插入排序如下 */</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; lth; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> key = B[i];</span><br><span class="line">    <span class="keyword">if</span> (key &lt; B[i-<span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt; key; j--)</span><br><span class="line">            B[j+<span class="number">1</span>] = B[j];</span><br><span class="line">        B[j+<span class="number">1</span>] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>返回数组B。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> B;</span><br></pre></td></tr></table></figure>
+<h5 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5>插入排序平均时间复杂度为O(<em>n</em><sup>2</sup>)，其中<em>n</em>为数组的长度。</li>
+</ol>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>该方法在方法一的基础上优化排序算法，这里使用的是快速排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span>[] ar, <span class="keyword">int</span> lth)</span> </span>&#123;</span><br><span class="line">    qsort(ar, <span class="number">0</span>, lth-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">qsort</span><span class="params">(<span class="keyword">int</span>[] ar, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (low &lt; high)     <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> w = partition(ar, low, high);</span><br><span class="line">    qsort(ar, low, w-<span class="number">1</span>);</span><br><span class="line">    qsort(ar, w+<span class="number">1</span>, high);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] ar, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = low;</span><br><span class="line">    <span class="keyword">int</span> h = high;</span><br><span class="line">    <span class="keyword">int</span> key = ar[low];</span><br><span class="line">    <span class="keyword">while</span> (l &lt; h) &#123;</span><br><span class="line">        <span class="keyword">while</span> (key &lt;= ar[h])    h--;</span><br><span class="line">        exch(ar, l, h);</span><br><span class="line">        <span class="keyword">while</span> (key &gt;= ar[l])    l++;</span><br><span class="line">        exch(ar, l, h);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>快速排序的整体思路是选取一个数作为中间值，并通过多次交换将该值放在一个合适的位置，使其左边的数均小于它，右边的数均大于它。之后以中间值为基准，将数组划分为两部分，对两部分分别递归之前的操作。</p>
+<h5 id="时间复杂度分析-1"><a href="#时间复杂度分析-1" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5><p>快速排序的平均时间复杂度为O(<em>n</em>log<em>n</em>)，其中n为数组长度。</p>
+<h5 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h5><p>方法一和方法二均为排序算法，除了存储数组的空间外，还需O(log<em>n</em>)空间用于排序。</p>
+<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p>快速排序整体的执行速度已经相当快了，但从题目的前提来看，输入的数组A本身就是排序过的数组，再进行排序其实有点多余。<br>数组本身是排序过的，但因为数组包含负数，直接对数组的数进行平方是不行的，从另一方面考虑，数组中的数平方后的最大值在应该是在数组的头部或尾部，所以在拷贝数组的时候可以从最后一位开始拷贝。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> lth = A.length;</span><br><span class="line"><span class="keyword">int</span>[] B = <span class="keyword">new</span> <span class="keyword">int</span>[lth];</span><br><span class="line"><span class="keyword">int</span> s = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> e = lth - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> i = e;</span><br><span class="line"><span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (A[s]*A[s] &lt;= A[e]*A[e])     B[i--] = A[e]*A[e--];</span><br><span class="line">    <span class="keyword">else</span>    B[i--] = A[s]*A[s++]; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> B;</span><br></pre></td></tr></table></figure>
+<h5 id="时间复杂度分析-2"><a href="#时间复杂度分析-2" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5><p>该方法只需遍历一遍数组，所以时间复杂度为O(<em>n</em>)，其中n为数组长度。</p>
+<h5 id="空间复杂度分析-1"><a href="#空间复杂度分析-1" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h5><p>该方法只占用存储数组的空间，所以空间复杂度为O(<em>n</em>)。</p>
+<hr>
+<h2 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h2><h3 id="题目名称"><a href="#题目名称" class="headerlink" title="题目名称"></a>题目名称</h3><p><strong>LCP 18.早餐组合</strong></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>小扣在秋日市集选择了一家早餐摊位，一维整型数组<code>staple</code>中记录了每种主食的价格，一维整型数组<code>drinks</code>中记录了每种饮料的价格。小扣计划选择一份主食和一款饮料，且花费不超过<code>x</code>元。计算共有多少种购买方案。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h4><p>比较容易想到的方法便是遍历两个数组，但该题两个数组的长度均可达到10<sup>5</sup>，遍历需要很长时间。所以需要更换一个高效的遍历方式。<br>因为输入数组并不是有序的，可以使用<code>Arrays.sort()</code>先对两个数组进行排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(staple);</span><br><span class="line">Arrays.sort(drinks);</span><br></pre></td></tr></table></figure>
+<p>这样两个数组便是有序数组了，接下来的遍历思路便是先遍历<code>staple</code>数组，遍历到比<code>x</code>小时便跳出循环，在<code>staple</code>的循环遍历中嵌套<code>drinks</code>数组的遍历，drink数组采用逆序遍历，即从最大的数开始遍历，且<code>drinks</code>采用while循环，循环的判断变量在<code>staple</code>之前初始化，<code>drinks</code>中的循环每次递减该变量，但不对它进行初始化。这样一来可以减少很多不必要的遍历。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sl = staple.length;</span><br><span class="line"><span class="keyword">int</span> dl = drinks.length - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sl &amp;&amp; staple[i] &lt; x; i++) &#123;</span><br><span class="line">    <span class="keyword">while</span> (dl &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((staple[i] + drinks[dl]) &lt;= x) &#123;</span><br><span class="line">            count += (dl + <span class="number">1</span>);      <span class="comment">/* 直接统计上该位置和之前的所有数，减少不必要的遍历 */</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dl--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>)(count%<span class="number">1000000007</span>); <span class="comment">/* 根据题目要求，需要对1000000007取模，同时防止数据溢出 */</span></span><br></pre></td></tr></table></figure>
+<h5 id="时间复杂度分析-3"><a href="#时间复杂度分析-3" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5><p>该方法需要遍历两个数组，时间复杂度为O(mn)，m、n对应两个数组长度。</p>
+<h4 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h4><p>新建一个长度比输入价格大1的数组，该数组下标用与存储价格，数值用于存储不大于该价格的数量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] ars = <span class="keyword">new</span> <span class="keyword">int</span>[x+<span class="number">1</span>]</span><br><span class="line"><span class="keyword">int</span> sl = staple.length;</span><br><span class="line"><span class="keyword">int</span> dl = drinks.length;</span><br><span class="line"><span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sl; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (staple[i] &lt; x)     ars[staple[i]]++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;= x; i++) &#123;</span><br><span class="line">    ars[i] += sum;</span><br><span class="line">    sum = ars[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来开始遍历drinks数组，遍历时计算x与drink[i]的差价，差价大于0时从ans数组中选取对应的进行累加。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dl; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> diff = x - drinks[i];</span><br><span class="line">    <span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        count += ans[diff];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>)(count%<span class="number">1000000007</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="时间复杂度分析-4"><a href="#时间复杂度分析-4" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5><p>该方法将m*n次遍历简化成m+n+x+1次遍历,所以该方法的时间复杂度为O(<em>m</em>+<em>n</em>)。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/18/leetcode-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-blog-9-23" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -290,17 +474,12 @@
 <li>如果最高阶项存在且不是1,则去除与这个项相乘的常数。<br>最后所的的结果即大O阶<h3 id="常见的时间复杂度"><a href="#常见的时间复杂度" class="headerlink" title="常见的时间复杂度"></a>常见的时间复杂度</h3><table>
 <thead>
 <tr>
-<th></th>
-<th></th>
-<th></th>
+<th>执行次数函数</th>
+<th>阶</th>
+<th>非正式术语</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>执行次数函数</td>
-<td>阶</td>
-<td>非正式术语</td>
-</tr>
-<tr>
 <td>12</td>
 <td>O(1)</td>
 <td>常数阶</td>

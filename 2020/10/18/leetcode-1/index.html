@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>leetcode(1) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+  <meta name="description" content="LeetCode解题记录(1) 题目一问题名称977.有序数组的平方 问题描述给定一个非递减顺序排序的整数数组A，返回每个数字的平方组成的新数组，要求也按非递减顺序排序。 解题思路方法一根据问题描述，我们需要将输入数组A的每个数字平方后再重新排序。首先我们可以定义一个新的数组B，该数组与数组A等长，将A的每个数字平方后拷贝到B的对应位置，之后再对B进行排序，返回值为B。  定义新数组B并将数组A的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode(1)">
+<meta property="og:url" content="http://example.com/2020/10/18/leetcode-1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="LeetCode解题记录(1) 题目一问题名称977.有序数组的平方 问题描述给定一个非递减顺序排序的整数数组A，返回每个数字的平方组成的新数组，要求也按非递减顺序排序。 解题思路方法一根据问题描述，我们需要将输入数组A的每个数字平方后再重新排序。首先我们可以定义一个新的数组B，该数组与数组A等长，将A的每个数字平方后拷贝到B的对应位置，之后再对B进行排序，返回值为B。  定义新数组B并将数组A的">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-18T11:03:52.000Z">
+<meta property="article:modified_time" content="2020-10-19T14:38:44.179Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -134,184 +138,176 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-leetcode-1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/19/leetcode-2/" class="archive-article-date">
-  	<time datetime="2020-10-19T14:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/19/leetcode-2/">Leetcode解题记录(2)</a>
+    <h1 class="article-title" itemprop="name">
+      leetcode(1)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/18/leetcode-1/" class="archive-article-date">
+        
+        <a href="/2020/10/18/leetcode-1/" class="archive-article-date">
   	<time datetime="2020-10-18T11:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-18</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/18/leetcode-1/">leetcode(1)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LeetCode解题记录-1"><a href="#LeetCode解题记录-1" class="headerlink" title="LeetCode解题记录(1)"></a>LeetCode解题记录(1)</h1><hr>
+<h2 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h2><h3 id="问题名称"><a href="#问题名称" class="headerlink" title="问题名称"></a>问题名称</h3><p>977.有序数组的平方</p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定一个非递减顺序排序的整数数组A，返回每个数字的平方组成的新数组，要求也按非递减顺序排序。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>根据问题描述，我们需要将输入数组A的每个数字平方后再重新排序。首先我们可以定义一个新的数组B，该数组与数组A等长，将A的每个数字平方后拷贝到B的对应位置，之后再对B进行排序，返回值为B。</p>
+<ol>
+<li>定义新数组B并将数组A的每个数平方后拷贝到B。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> lth = A.length;</span><br><span class="line"><span class="keyword">int</span>[] B = <span class="keyword">new</span> <span class="keyword">int</span>[];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lth; i++) &#123;</span><br><span class="line">    B[i] = A[i]*A[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>对数组B进行排序，这里使用的是插入排序。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 因为排序中要多次交换数值，这里定义一个用于交换数值的函数 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(<span class="keyword">int</span>[] ar, <span class="keyword">int</span> a, in b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = ar[a];</span><br><span class="line">    ar[a] = ar[b];</span><br><span class="line">    ar[b] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 插入排序如下 */</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; lth; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> key = B[i];</span><br><span class="line">    <span class="keyword">if</span> (key &lt; B[i-<span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt; key; j--)</span><br><span class="line">            B[j+<span class="number">1</span>] = B[j];</span><br><span class="line">        B[j+<span class="number">1</span>] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>返回数组B。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> B;</span><br></pre></td></tr></table></figure>
+<h5 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5>插入排序平均时间复杂度为O(<em>n</em><sup>2</sup>)，其中<em>n</em>为数组的长度。</li>
+</ol>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>该方法在方法一的基础上优化排序算法，这里使用的是快速排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span>[] ar, <span class="keyword">int</span> lth)</span> </span>&#123;</span><br><span class="line">    qsort(ar, <span class="number">0</span>, lth-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">qsort</span><span class="params">(<span class="keyword">int</span>[] ar, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (low &lt; high)     <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> w = partition(ar, low, high);</span><br><span class="line">    qsort(ar, low, w-<span class="number">1</span>);</span><br><span class="line">    qsort(ar, w+<span class="number">1</span>, high);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] ar, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = low;</span><br><span class="line">    <span class="keyword">int</span> h = high;</span><br><span class="line">    <span class="keyword">int</span> key = ar[low];</span><br><span class="line">    <span class="keyword">while</span> (l &lt; h) &#123;</span><br><span class="line">        <span class="keyword">while</span> (key &lt;= ar[h])    h--;</span><br><span class="line">        exch(ar, l, h);</span><br><span class="line">        <span class="keyword">while</span> (key &gt;= ar[l])    l++;</span><br><span class="line">        exch(ar, l, h);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>快速排序的整体思路是选取一个数作为中间值，并通过多次交换将该值放在一个合适的位置，使其左边的数均小于它，右边的数均大于它。之后以中间值为基准，将数组划分为两部分，对两部分分别递归之前的操作。</p>
+<h5 id="时间复杂度分析-1"><a href="#时间复杂度分析-1" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5><p>快速排序的平均时间复杂度为O(<em>n</em>log<em>n</em>)，其中n为数组长度。</p>
+<h5 id="空间复杂度分析"><a href="#空间复杂度分析" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h5><p>方法一和方法二均为排序算法，除了存储数组的空间外，还需O(log<em>n</em>)空间用于排序。</p>
+<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p>快速排序整体的执行速度已经相当快了，但从题目的前提来看，输入的数组A本身就是排序过的数组，再进行排序其实有点多余。<br>数组本身是排序过的，但因为数组包含负数，直接对数组的数进行平方是不行的，从另一方面考虑，数组中的数平方后的最大值在应该是在数组的头部或尾部，所以在拷贝数组的时候可以从最后一位开始拷贝。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> lth = A.length;</span><br><span class="line"><span class="keyword">int</span>[] B = <span class="keyword">new</span> <span class="keyword">int</span>[lth];</span><br><span class="line"><span class="keyword">int</span> s = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> e = lth - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> i = e;</span><br><span class="line"><span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (A[s]*A[s] &lt;= A[e]*A[e])     B[i--] = A[e]*A[e--];</span><br><span class="line">    <span class="keyword">else</span>    B[i--] = A[s]*A[s++]; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> B;</span><br></pre></td></tr></table></figure>
+<h5 id="时间复杂度分析-2"><a href="#时间复杂度分析-2" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5><p>该方法只需遍历一遍数组，所以时间复杂度为O(<em>n</em>)，其中n为数组长度。</p>
+<h5 id="空间复杂度分析-1"><a href="#空间复杂度分析-1" class="headerlink" title="空间复杂度分析"></a>空间复杂度分析</h5><p>该方法只占用存储数组的空间，所以空间复杂度为O(<em>n</em>)。</p>
+<hr>
+<h2 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h2><h3 id="题目名称"><a href="#题目名称" class="headerlink" title="题目名称"></a>题目名称</h3><p><strong>LCP 18.早餐组合</strong></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>小扣在秋日市集选择了一家早餐摊位，一维整型数组<code>staple</code>中记录了每种主食的价格，一维整型数组<code>drinks</code>中记录了每种饮料的价格。小扣计划选择一份主食和一款饮料，且花费不超过<code>x</code>元。计算共有多少种购买方案。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><h4 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h4><p>比较容易想到的方法便是遍历两个数组，但该题两个数组的长度均可达到10<sup>5</sup>，遍历需要很长时间。所以需要更换一个高效的遍历方式。<br>因为输入数组并不是有序的，可以使用<code>Arrays.sort()</code>先对两个数组进行排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(staple);</span><br><span class="line">Arrays.sort(drinks);</span><br></pre></td></tr></table></figure>
+<p>这样两个数组便是有序数组了，接下来的遍历思路便是先遍历<code>staple</code>数组，遍历到比<code>x</code>小时便跳出循环，在<code>staple</code>的循环遍历中嵌套<code>drinks</code>数组的遍历，drink数组采用逆序遍历，即从最大的数开始遍历，且<code>drinks</code>采用while循环，循环的判断变量在<code>staple</code>之前初始化，<code>drinks</code>中的循环每次递减该变量，但不对它进行初始化。这样一来可以减少很多不必要的遍历。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sl = staple.length;</span><br><span class="line"><span class="keyword">int</span> dl = drinks.length - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sl &amp;&amp; staple[i] &lt; x; i++) &#123;</span><br><span class="line">    <span class="keyword">while</span> (dl &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((staple[i] + drinks[dl]) &lt;= x) &#123;</span><br><span class="line">            count += (dl + <span class="number">1</span>);      <span class="comment">/* 直接统计上该位置和之前的所有数，减少不必要的遍历 */</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dl--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>)(count%<span class="number">1000000007</span>); <span class="comment">/* 根据题目要求，需要对1000000007取模，同时防止数据溢出 */</span></span><br></pre></td></tr></table></figure>
+<h5 id="时间复杂度分析-3"><a href="#时间复杂度分析-3" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5><p>该方法需要遍历两个数组，时间复杂度为O(mn)，m、n对应两个数组长度。</p>
+<h4 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h4><p>新建一个长度比输入价格大1的数组，该数组下标用与存储价格，数值用于存储不大于该价格的数量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] ars = <span class="keyword">new</span> <span class="keyword">int</span>[x+<span class="number">1</span>]</span><br><span class="line"><span class="keyword">int</span> sl = staple.length;</span><br><span class="line"><span class="keyword">int</span> dl = drinks.length;</span><br><span class="line"><span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sl; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (staple[i] &lt; x)     ars[staple[i]]++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;= x; i++) &#123;</span><br><span class="line">    ars[i] += sum;</span><br><span class="line">    sum = ars[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来开始遍历drinks数组，遍历时计算x与drink[i]的差价，差价大于0时从ans数组中选取对应的进行累加。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dl; i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> diff = x - drinks[i];</span><br><span class="line">    <span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        count += ans[diff];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (<span class="keyword">int</span>)(count%<span class="number">1000000007</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="时间复杂度分析-4"><a href="#时间复杂度分析-4" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h5><p>该方法将m*n次遍历简化成m+n+x+1次遍历,所以该方法的时间复杂度为O(<em>m</em>+<em>n</em>)。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/18/leetcode-1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/23/blog-9-23/" class="archive-article-date">
-  	<time datetime="2020-09-23T05:03:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/10/19/leetcode-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Leetcode解题记录(2)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/23/blog-9-23/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java编程环境配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/23/blog-9-23/">Java编程环境配置</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/07/Algorithm-learning/" class="archive-article-date">
-  	<time datetime="2020-04-07T02:26:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/07/Algorithm-learning/">算法学习笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/19/blog-1/" class="archive-article-date">
-  	<time datetime="2020-03-19T06:56:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/19/blog-1/">双系统时间不同步问题解决</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/06/Git-Guider/" class="archive-article-date">
-  	<time datetime="2020-01-06T01:07:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/06/Git-Guider/">Git常用命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -334,8 +330,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
